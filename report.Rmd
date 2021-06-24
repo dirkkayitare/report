@@ -1,0 +1,72 @@
+---
+title: "This is mine."
+author: "Dirk Kayitare"
+date: "6/24/2021"
+output: html_document
+bibliography: bibliography.bib
+---
+
+```{r, include=FALSE, echo = TRUE, eval = FALSE}
+# Basic knitr options
+library(knitr)
+opts_chunk$set(comment = NA, 
+               echo = TRUE, 
+               warning = FALSE, 
+               message = FALSE, 
+               error = TRUE)
+```
+
+```{r, echo = TRUE}
+library(dplyr)
+smoke <- c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE)
+age <- c(35, 21, 20, 48, 20, 20, 22, 19, 19, 20, 19, 18, 24, 22, 22, 19, 21, 19, 21)
+people <- data.frame(smoke, age)
+people <- people %>%
+  filter(age <= 34)
+obs <- nrow(people)
+```
+
+
+
+
+
+# Intro
+
+## Subheader
+
+### Sub sub header
+
+# Is smkong good for you?
+Everyone knows smoking is no bueno.
+
+# How many poeple smoke?
+LOTS
+
+Everyone knows that math is pretty easy [@Rudd2014].
+
+Doctors prolly shouldn't sip on the liquor while on call [@Peterman2005]
+
+
+# **Methods** 
+
+My esteemed colleagues and I surveyed `r obs` people.
+
+The average age of my participants is `r round(mean(age))` years. This is very _young_. **Right?**
+
+# **Results**
+
+The below chart shows the age of participants
+```{r, echo = FALSE}
+library(ggplot2)
+ggplot(data = people,
+       aes(x = age,
+           y = smoke)) +
+  geom_boxplot()
+```
+
+
+# Conclusion
+
+Some people have smoked. Others have not. Fumar no bueno.
+
+# Bibliography
